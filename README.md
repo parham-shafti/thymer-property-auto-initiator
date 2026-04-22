@@ -207,6 +207,10 @@ Please include a minimal reproduction (collection configs, the ancestor/child pa
 
 ---
 
+## Acknowledgements
+
+Huge thanks to **JD from Thymer** for the original "Copy properties from parent" command-palette snippet that sparked this plugin. His starting code gave shape to the core idea; everything here grew from that seed — moving from a manual per-field command into an event-driven, workspace-wide, per-collection configurable system with cross-collection label matching.
+
 ## License
 
 [MIT](LICENSE) — use it, modify it, share it, ship it.
