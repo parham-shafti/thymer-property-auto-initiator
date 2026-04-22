@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] — 2026-04-22
+
+### Changed
+- **"Auto-Init: show field IDs for this collection"** now copies only the `"custom": { ... },` config block to the clipboard, so users can paste it directly into a collection's `plugin.json` without manually selecting it out of the larger output. The field reference table and scaffold instructions are still shown on screen and in the DevTools Console, but no longer pollute the clipboard paste.
+- Updated toast wording to reflect the clipboard contents ("Config block copied to clipboard").
+
 ## [0.1.0] — 2026-04-22
 
 Initial public release.

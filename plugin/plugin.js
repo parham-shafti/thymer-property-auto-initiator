@@ -24,8 +24,10 @@
  *   - "Auto-Init: show field IDs for this collection"
  *       Prints a tidy list of field IDs + labels AND a ready-to-paste autoInit
  *       scaffold (with "label": "..." on every entry) for the currently open
- *       collection. Copies to clipboard. Just delete fields you don't want and
- *       flip the flags you do.
+ *       collection. Only the config block ("custom": { ... },) is copied to
+ *       the clipboard — paste it straight into plugin.json. The field reference
+ *       table is shown on screen and in DevTools Console for your reference.
+ *       Just delete fields you don't want and flip the flags you do.
  *   - "Auto-Init: toggle verbose logging"
  *       Turn on/off detailed console output if something misbehaves.
  */
@@ -547,22 +549,31 @@ class Plugin extends AppPlugin {
         rows.push('FIRST entry, remove the "," from what becomes the new first line.');
         rows.push('=========================================================');
         rows.push('');
-        rows.push('"custom": {');
-        rows.push('    "autoInit": {');
-        for (const line of entryLines) rows.push(line);
-        rows.push('    }');
-        rows.push('},');
+        // Build the JSON-only block (what actually goes into plugin.json).
+        // This is what we put on the clipboard — so users can paste directly
+        // without having to manually select it out of the larger output.
+        const jsonRows = [];
+        jsonRows.push('"custom": {');
+        jsonRows.push('    "autoInit": {');
+        for (const line of entryLines) jsonRows.push(line);
+        jsonRows.push('    }');
+        jsonRows.push('},');
+        const jsonOnly = jsonRows.join('\n');
+
+        // Append the JSON block to the on-screen/console output for reference.
+        for (const r of jsonRows) rows.push(r);
 
         const text = rows.join('\n');
         console.log('%c[auto-init] field IDs:\n', 'color:#0a0;font-weight:bold');
         console.log(text);
 
-        // Also attempt to drop it on the clipboard for quick paste into docs/notes.
+        // Drop ONLY the JSON block on the clipboard so a single paste into
+        // plugin.json works without manual trimming.
         try {
             if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text);
-                this._toast('Field IDs copied to clipboard',
-                    'Also printed in DevTools → Console (F12).');
+                navigator.clipboard.writeText(jsonOnly);
+                this._toast('Config block copied to clipboard',
+                    'Paste it into the collection\'s plugin.json. Field reference is in DevTools → Console (F12).');
                 return;
             }
         } catch (e) {}
