@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] — 2026-04-22
+
+### Changed
+- **Repo layout:** moved `plugin/plugin.js` and `plugin/plugin.json` to the repository root so Thymer's Plugins Manager can install directly from the GitHub URL. Thymer's manager expects `plugin.js` and `plugin.json` at the repo root — the previous `plugin/` subfolder layout caused "No config file (.json) found" errors on install.
+- Updated README with an **Option A — via Thymer's Plugins Manager** installation path (paste the repo URL, done) alongside the existing copy-paste method.
+- Updated `docs/INSTALL.md` path references.
+
 ## [0.1.1] — 2026-04-22
 
 ### Changed

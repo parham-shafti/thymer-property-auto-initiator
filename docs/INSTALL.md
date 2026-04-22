@@ -19,11 +19,11 @@ Paste the following JSON into the plugin's metadata / manifest field (or fill in
 }
 ```
 
-The full file is at [`plugin/plugin.json`](../plugin/plugin.json).
+The full file is at [`plugin.json`](../plugin.json).
 
 ## 3. Paste the plugin code
 
-Open the plugin's **Custom Code** editor. Paste the entire contents of [`plugin/plugin.js`](../plugin/plugin.js) into it.
+Open the plugin's **Custom Code** editor. Paste the entire contents of [`plugin.js`](../plugin.js) into it.
 
 If Thymer's editor reports a syntax error, make sure you copied the **entire** file — the plugin is a single `class Plugin extends AppPlugin { ... }` block. Do not add `export` or `import` statements; Thymer's parser rejects them.
 

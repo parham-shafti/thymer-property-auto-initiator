@@ -58,17 +58,26 @@ Both flags are **independent** — enable whichever combination you need per fie
 
 ## Installation
 
-### 1. Install the App Plugin
+### Option A — via Thymer's Plugins Manager (recommended)
+
+1. In Thymer, open **Plugins Manager → Plugins → Install Plugin**.
+2. Paste the GitHub URL: `https://github.com/parham-shafti/thymer-property-auto-initiator`
+3. Confirm. Thymer will fetch `plugin.js` and `plugin.json` from the repo root.
+4. **Hard-reload Thymer** (Cmd+Shift+R / Ctrl+Shift+R) — required for the plugin to register its event listeners.
+
+Future updates can be pulled via the refresh button on the plugin card in the Plugins Manager.
+
+### Option B — manual install (copy-paste)
 
 1. In Thymer, go to **Plugin Settings → App Plugins → New Plugin**.
-2. Set the plugin's metadata by pasting the contents of [`plugin/plugin.json`](plugin/plugin.json) (name, icon, description).
-3. Open the plugin's **Custom Code** editor and paste the entire contents of [`plugin/plugin.js`](plugin/plugin.js).
+2. Set the plugin's metadata by pasting the contents of [`plugin.json`](plugin.json) (name, icon, description).
+3. Open the plugin's **Custom Code** editor and paste the entire contents of [`plugin.js`](plugin.js).
 4. **Save**.
 5. **Hard-reload Thymer** (Cmd+Shift+R / Ctrl+Shift+R) — required for the plugin to register its event listeners.
 
-The plugin is now active workspace-wide. No per-collection installation is needed — you just configure each collection where you want auto-init to apply.
+Either way, the plugin is now active workspace-wide. No per-collection installation is needed — you just configure each collection where you want auto-init to apply.
 
-### 2. Verify
+### Verify it's working
 
 Open DevTools (F12 → Console), then run **"Auto-Init: toggle verbose logging"** from the command palette. You should see a toast confirming verbose mode is on. Navigate into a record and you'll see log lines like:
 
