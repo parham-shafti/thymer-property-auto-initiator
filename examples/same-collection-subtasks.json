@@ -1,0 +1,13 @@
+{
+    "_comment": "Example: sub-tasks in a Tasks collection inheriting parent metadata. Paste the \"custom\" block into your Tasks collection's plugin.json. Replace the field IDs (F...) with your actual field IDs from the 'Auto-Init: show field IDs for this collection' command.",
+
+    "custom": {
+        "autoInit": {
+              "F_PROJECT_ID":   { "label": "Project",   "useAncestorValue": true }
+            , "F_ASSIGNEE_ID":  { "label": "Assignee",  "useAncestorValue": true }
+            , "F_PRIORITY_ID":  { "label": "Priority",  "useAncestorValue": true }
+            , "F_DUE_DATE_ID":  { "label": "Due Date",  "useAncestorValue": true }
+            , "F_PARENT_TASK_ID": { "label": "Parent Task", "useAncestorValue": true, "useAncestorSelf": true, "forceSelfIgnoreFilter": false }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "_comment": "Example: Actions collection where new Actions created inside a Book inherit the Book's Garden tag and link back to the Book itself via a 'Serves' field. Paste the \"custom\" block into the Actions collection's plugin.json. Replace field IDs with your actual ones.",
+
+    "_setup_note": "For 'Serves' to display the Book's name correctly (not '(Other)'), configure the Serves field in the Actions collection to 'Link to All Records' (or explicitly allow the Books collection) in the collection settings. Cross-collection value inheritance matches by field LABEL \u2014 so the Books collection must have a field labeled 'Garden' of the same type as the Actions collection's 'Garden' field.",
+
+    "custom": {
+        "autoInit": {
+              "F_GARDEN_ID":         { "label": "Garden",          "useAncestorValue": true }
+            , "F_RELATED_PEOPLE_ID": { "label": "Related People",  "useAncestorValue": true, "useAncestorSelf": false, "forceSelfIgnoreFilter": false }
+            , "F_RELATED_COMPANY_ID":{ "label": "Related Company", "useAncestorValue": true, "useAncestorSelf": false, "forceSelfIgnoreFilter": false }
+            , "F_SERVES_ID":         { "label": "Serves",          "useAncestorValue": false, "useAncestorSelf": true, "forceSelfIgnoreFilter": false }
+            , "F_AGENTS_ID":         { "label": "Agents",          "useAncestorValue": true, "useAncestorSelf": false, "forceSelfIgnoreFilter": false }
+        }
+    }
+}
