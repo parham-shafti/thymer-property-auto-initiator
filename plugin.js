@@ -719,7 +719,7 @@ class Plugin extends AppPlugin {
 .aii-field-row:last-child { border-bottom: 0; }
 .aii-field-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .aii-field-type { font-size: 10px; opacity: .4; text-transform: uppercase; letter-spacing: .04em; margin-left: 7px; }
-.aii-toggles { display: grid; grid-template-columns: repeat(3, 116px); flex: none; }
+.aii-toggles { display: grid; grid-template-columns: 130px 150px 150px; flex: none; }
 .aii-toggle-slot { display: flex; align-items: center; }
 .aii-toggle { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; opacity: .85; }
 .aii-toggle:hover { opacity: 1; }
@@ -1055,10 +1055,10 @@ class Plugin extends AppPlugin {
             row.className = 'aii-field-row';
 
             const valueSlot = '<div class="aii-toggle-slot"><label class="aii-toggle" data-tip="' + this._esc(valueTip) +
-                '"><input type="checkbox" data-flag="value"> Value</label></div>';
+                '"><input type="checkbox" data-flag="value"> Copy value</label></div>';
             const selfSlot = isRecord
                 ? '<div class="aii-toggle-slot"><label class="aii-toggle" data-tip="' + this._esc(selfTip) +
-                  '"><input type="checkbox" data-flag="self"> Self</label></div>'
+                  '"><input type="checkbox" data-flag="self"> Link ancestor</label></div>'
                 : '<div class="aii-toggle-slot"></div>';
             const forceSlot = hasFilter
                 ? '<div class="aii-toggle-slot"><label class="aii-toggle" data-tip="' + this._esc(forceTip) +
