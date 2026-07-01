@@ -30,13 +30,13 @@ Per field, per collection, you choose how a new record inherits from its ancesto
 
 | Toggle | Applies to | What it does |
 |---|---|---|
-| **Value** | all fields | Copies the ancestor's value from its matching field into the new record. |
-| **Self** | record fields | Links the ancestor record itself into this field. |
-| **Ignore filter** | record fields that have a collection filter | Links the ancestor even if the field's "Filter by collection" would normally not allow it. |
+| **Copy value** | all fields | Copies the ancestor's value from its matching field into the new record. |
+| **Link ancestor** | record fields | Links the ancestor record itself into this field. |
+| **Ignore filter** | record fields that have a collection filter | Links the ancestor even when it is from a collection the field's "Filter by collection" would normally not allow. |
 
-Value and Self are independent. Turn on both and the plugin tries the value first, then falls back to linking the ancestor.
+Copy value and Link ancestor are independent. Turn on both and the plugin tries the value first, then falls back to linking the ancestor.
 
-How **Value** finds the matching field on the ancestor:
+How **Copy value** finds the matching field on the ancestor:
 
 - **Same collection** (for example sub-tasks in a Tasks collection): matched by field.
 - **Different collections** (for example an Action created inside a Book): matched by field **label** (case-insensitive) and **type**.
@@ -57,7 +57,7 @@ Open the Command Palette (Cmd/Ctrl+P) and run **"Auto-Init: Settings"**. The pan
 
 ![The Auto-Init settings panel: the Collections tab, with a collection selected and each field's inheritance toggles on the right](assets/settings-collections.png)
 
-**Collections.** Search for a collection, or click **+ Add collection** to start configuring one. Select a collection to see its fields, then toggle **Value**, **Self**, and **Ignore filter** per field. A badge next to each collection shows how many active rules it has. Hover any toggle for a short explanation.
+**Collections.** Search for a collection, or click **+ Add collection** to start configuring one. Select a collection to see its fields, then toggle **Copy value**, **Link ancestor**, and **Ignore filter** per field. A badge next to each collection shows how many active rules it has. Hover any toggle for a short explanation.
 
 **Blocklist.** Collections listed here are skipped entirely (see below).
 
@@ -101,7 +101,7 @@ On first load after upgrading, the plugin **automatically imports** your existin
 
 ### A field is not being filled
 
-Open the Settings panel and confirm the collection has the rule you expect (Value or Self on that field). For cross-collection **Value** inheritance, the ancestor must have a field with the **same label and type**.
+Open the Settings panel and confirm the collection has the rule you expect (Copy value or Link ancestor on that field). For cross-collection **Copy value** inheritance, the ancestor must have a field with the **same label and type**.
 
 ### A record got auto-initialized when it should not have
 

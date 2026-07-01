@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-07-01
+
+### Changed
+- Renamed the two main toggles for clarity: **Value** is now **Copy value**, and **Self** is now **Link ancestor**. "Ignore filter" is unchanged. No config or behaviour change, just labels.
+- Link ancestor now reads the ancestor's collection from the record itself when checking a field's "Filter by collection", so the filter is respected reliably even when the ancestor is a Journal page or another special panel.
+
 ## [2.0.0] - 2026-07-01
 
 A major rewrite (the previous `0.1.x` line was the first, early release). Configuration moved from per-collection `plugin.json` blocks to a central store, edited through a visual settings panel. This is a breaking change to how config is stored, hence the major version bump; existing setups are migrated automatically.
