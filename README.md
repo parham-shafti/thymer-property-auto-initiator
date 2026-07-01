@@ -55,7 +55,7 @@ Two things shape what actually happens: the per-field rules you set (below), and
 
 Open the Command Palette (Cmd/Ctrl+P) and run **"Auto-Init: Settings"**. The panel has two tabs.
 
-![The Auto-Init settings panel: the Collections tab, with a collection selected and each field's inheritance toggles on the right](assets/settings-collections.png)
+![The Auto-Init settings panel: the Collections tab, with a collection selected and each field's inheritance toggles on the right](assets/collections.png)
 
 **Collections.** Search for a collection, or click **+ Add collection** to start configuring one. Select a collection to see its fields, then toggle **Copy value**, **Link ancestor**, and **Ignore filter** per field. A badge next to each collection shows how many active rules it has. Hover any toggle for a short explanation.
 
@@ -67,7 +67,7 @@ Click **Save** to apply. Nothing is written until you save.
 
 Some collections should never take part in auto-init. The **Blocklist** tab is where you list them.
 
-![The Auto-Init settings panel: the Blocklist tab, listing collections that are left out of auto-init](assets/settings-blocklist.png)
+![The Auto-Init settings panel: the Blocklist tab, listing collections that are left out of auto-init](assets/blocklist.png)
 
 A blocklisted collection is skipped whether it is the collection of the **new record** or of the **record you are creating it inside**. So nothing is auto-filled into it, and nothing is inherited from it.
 
