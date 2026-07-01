@@ -12,9 +12,9 @@ Everything is configured in a **visual settings panel**. No JSON, no per-collect
 
 - [What it does](#what-it-does)
 - [How it works](#how-it-works)
-- [Installation](#installation)
 - [Configuring it](#configuring-it)
-- [Blocklist and the Journal](#blocklist-and-the-journal)
+- [Blocklist](#blocklist)
+- [Installation](#installation)
 - [Upgrading from the old version](#upgrading-from-the-old-version)
 - [Troubleshooting](#troubleshooting)
 - [Requirements](#requirements)
@@ -49,7 +49,29 @@ Multi-value fields inherit all values, not just the first.
 2. When you create a record, it looks up the rules you configured for that record's collection and applies them, only to fields that are still empty.
 3. It never overwrites a field that already has a value, and it ignores records synced in from other devices.
 
-The plugin is event-driven and does nothing at rest, so it has no idle cost.
+Two things shape what actually happens: the per-field rules you set (below), and the collections you [exclude entirely](#blocklist). The plugin is event-driven and does nothing at rest, so it has no idle cost.
+
+## Configuring it
+
+Open the Command Palette (Cmd/Ctrl+P) and run **"Auto-Init: Settings"**. The panel has two tabs.
+
+![The Auto-Init settings panel: the Collections tab, with a collection selected and each field's inheritance toggles on the right](assets/settings-collections.png)
+
+**Collections.** Search for a collection, or click **+ Add collection** to start configuring one. Select a collection to see its fields, then toggle **Value**, **Self**, and **Ignore filter** per field. A badge next to each collection shows how many active rules it has. Hover any toggle for a short explanation.
+
+**Blocklist.** Collections listed here are skipped entirely (see below).
+
+Click **Save** to apply. Nothing is written until you save.
+
+## Blocklist
+
+Some collections should never take part in auto-init. The **Blocklist** tab is where you list them.
+
+![The Auto-Init settings panel: the Blocklist tab, listing collections that are left out of auto-init](assets/settings-blocklist.png)
+
+A blocklisted collection is skipped whether it is the collection of the **new record** or of the **record you are creating it inside**. So nothing is auto-filled into it, and nothing is inherited from it.
+
+Reach for this whenever a collection is a place you capture into rather than a structured record you want pre-filled: a daily-notes or Journal collection, a scratch area, an inbox, imported data, and so on. For example, adding a Journal collection keeps quick notes you jot from inside a page from being pre-filled.
 
 ## Installation
 
@@ -69,20 +91,6 @@ Updates can be pulled later with the refresh button on the plugin card.
 
 See [`docs/INSTALL.md`](docs/INSTALL.md) for a step-by-step walkthrough.
 
-## Configuring it
-
-Open the Command Palette (Cmd/Ctrl+P) and run **"Auto-Init: Settings"**. The panel has two tabs.
-
-**Collections.** Search for a collection, or click **+ Add collection** to start configuring one. Select a collection to see its fields, then toggle **Value**, **Self**, and **Ignore filter** per field. A badge next to each collection shows how many active rules it has. Hover any toggle for a short explanation.
-
-**Blocklist.** Collections listed here are skipped entirely (see below).
-
-Click **Save** to apply. Nothing is written until you save.
-
-## Blocklist and the Journal
-
-The blocklist matches the collection of **both** the new record **and** the record you are creating it inside. So adding your **Journal** to the blocklist stops auto-init both for records created in the Journal and for anything you create while inside a journal day. That keeps quick notes jotted from your journal untouched.
-
 ## Upgrading from the old version
 
 Earlier versions stored configuration in each collection's own `plugin.json`, edited by hand through a command-palette scaffold. This version keeps everything centrally and edits it through the Settings panel.
@@ -95,9 +103,9 @@ On first load after upgrading, the plugin **automatically imports** your existin
 
 Open the Settings panel and confirm the collection has the rule you expect (Value or Self on that field). For cross-collection **Value** inheritance, the ancestor must have a field with the **same label and type**.
 
-### A record in my Journal got auto-initialized
+### A record got auto-initialized when it should not have
 
-Open the Settings panel, switch to the **Blocklist** tab, add the **Journal** collection, and Save.
+If it happened inside a collection you never want touched (a Journal, an inbox, a scratch area), add that collection on the **Blocklist** tab and Save.
 
 ### Nothing happens at all
 
