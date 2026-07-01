@@ -1,56 +1,41 @@
 # Installation guide
 
-A detailed walkthrough for installing the plugin in Thymer. For the short version, see the main [README](../README.md#installation).
+A step-by-step walkthrough for installing the plugin in Thymer. For the short version, see the main [README](../README.md#installation).
 
-## 1. Open Plugin Settings
+## Option A: Plugins Manager (recommended)
 
-In Thymer, go to **Settings → Plugins → App Plugins**. Click **"New plugin"** (or the equivalent button in your version).
+1. In Thymer, open **Plugins Manager → Install Plugin**.
+2. Paste the repository URL: `https://github.com/parham-shafti/thymer-property-auto-initiator`
+3. Confirm. Thymer fetches `plugin.js` and `plugin.json` from the repository root.
+4. **Hard-reload Thymer** (macOS: `Cmd + Shift + R`, Windows/Linux: `Ctrl + Shift + R`). This is required so the plugin can register its event listeners.
 
-## 2. Configure metadata
+Future updates can be pulled with the refresh button on the plugin card.
 
-Paste the following JSON into the plugin's metadata / manifest field (or fill in the UI equivalents):
+## Option B: manual install
 
-```json
-{
-    "ver": 1,
-    "name": "Auto-Init From Ancestor",
-    "icon": "ti-wand",
-    "description": "Workspace-wide: when you create a record while viewing another record, pre-fill fields on the new record based on the ancestor."
-}
-```
+### 1. Open plugin settings
 
-The full file is at [`plugin.json`](../plugin.json).
+Go to **Plugin Settings → App Plugins → New Plugin**.
 
-## 3. Paste the plugin code
+### 2. Set the metadata
 
-Open the plugin's **Custom Code** editor. Paste the entire contents of [`plugin.js`](../plugin.js) into it.
+Paste the contents of [`plugin.json`](../plugin.json) into the plugin's metadata field.
 
-If Thymer's editor reports a syntax error, make sure you copied the **entire** file — the plugin is a single `class Plugin extends AppPlugin { ... }` block. Do not add `export` or `import` statements; Thymer's parser rejects them.
+### 3. Paste the code
 
-## 4. Save and hard-reload
+Open the plugin's **Custom Code** editor and paste the entire contents of [`plugin.js`](../plugin.js). It is a single `class Plugin extends AppPlugin { ... }` block. Do not add `export` or `import` statements; Thymer's parser rejects them.
 
-Click **Save**. The editor should accept the code without errors.
+### 4. Save and hard-reload
 
-Now **hard-reload Thymer**:
+Click **Save**, then **hard-reload Thymer** (`Cmd/Ctrl + Shift + R`).
 
-- macOS: `Cmd + Shift + R`
-- Windows/Linux: `Ctrl + Shift + R`
+## Configure it
 
-Hard reload is required — a normal reload may not re-register the plugin's event listeners.
+The plugin does nothing until you tell it which fields on which collections should inherit from the ancestor.
 
-## 5. Verify
+1. Open the Command Palette (`Cmd/Ctrl + P`) and run **"Auto-Init: Settings"**.
+2. On the **Collections** tab, add a collection and toggle **Value** / **Self** / **Ignore filter** per field.
+3. On the **Blocklist** tab, add any collection you want left untouched (for example your Journal).
+4. Click **Save**.
 
-1. Open DevTools → Console (F12 → Console).
-2. Open the command palette (Cmd/Ctrl+P) and run **"Auto-Init: toggle verbose logging"**. You should see a toast confirming verbose mode is on.
-3. Navigate into any record. The console should show something like:
-   ```
-   [auto-init] ancestor remembered via navigated => <guid> (<record name>) coll=<collection guid>
-   ```
-
-If you see this, the plugin is running and tracking panel navigation correctly.
-
-## 6. Configure per-collection rules
-
-The plugin does nothing until you tell it which fields on which collections should be auto-initialized. Open any collection, run **"Auto-Init: show field IDs for this collection"**, and follow the on-screen scaffold instructions.
-
-See the main README for [configuration details](../README.md#per-collection-configuration).
+See the main README for [configuration details](../README.md#configuring-it).

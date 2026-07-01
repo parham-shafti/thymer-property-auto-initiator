@@ -1,6 +1,7 @@
 {
     "ver": 1,
+    "version": "1.0.0",
     "name": "Auto-Init From Ancestor",
     "icon": "ti-wand",
-    "description": "Workspace-wide: when you create a record while viewing another record, pre-fill fields on the new record based on the ancestor. Configure per-collection via custom.autoInit in each collection's plugin.json."
+    "description": "Workspace-wide: when you create a record while viewing another record, pre-fill fields on the new record from that ancestor. Configure it all in a visual panel (Command Palette: \"Auto-Init: Settings\")."
 }

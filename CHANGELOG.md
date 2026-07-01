@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-07-01
+
+A major rewrite. Configuration moved from per-collection `plugin.json` blocks to a central store, edited through a visual settings panel.
+
+### Added
+- **Visual settings panel** (Command Palette: "Auto-Init: Settings"): a two-pane, searchable interface with per-field **Value** / **Self** / **Ignore filter** toggles and hover tooltips.
+- **Collection blocklist**, on its own tab, that matches on both the new record and its ancestor. Add your Journal to skip auto-init there.
+- **Automatic one-time migration** of existing per-collection rules into the central config, with cleanup of the old blocks. The import is saved before anything is removed, so no data is lost.
+
+### Changed
+- All configuration now lives centrally in the plugin's own config and is edited in the panel, not by hand-editing each collection's `plugin.json`.
+- The ancestor's collection is now read reliably from the record's own collection property, so the blocklist works even for the Journal.
+- "Force" renamed to **"Ignore filter"**, shown only where it applies (record fields with a collection filter), with an explanatory tooltip. It links the ancestor across a collection filter; the linked page displays normally.
+- Added a `version` field to `plugin.json` so Thymer can show the version and offer updates.
+
+### Removed
+- The "Auto-Init: show field IDs for this collection" scaffold command, replaced by the panel.
+- The "Auto-Init: toggle verbose logging" command from the palette (logging is kept internally for troubleshooting).
+
 ## [0.1.2] — 2026-04-22
 
 ### Changed
