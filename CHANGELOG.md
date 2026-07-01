@@ -5,9 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-07-01
+## [2.0.0] - 2026-07-01
 
-A major rewrite. Configuration moved from per-collection `plugin.json` blocks to a central store, edited through a visual settings panel.
+A major rewrite (the previous `0.1.x` line was the first, early release). Configuration moved from per-collection `plugin.json` blocks to a central store, edited through a visual settings panel. This is a breaking change to how config is stored, hence the major version bump; existing setups are migrated automatically.
 
 ### Added
 - **Visual settings panel** (Command Palette: "Auto-Init: Settings"): a two-pane, searchable interface with per-field **Value** / **Self** / **Ignore filter** toggles and hover tooltips.
