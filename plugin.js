@@ -439,16 +439,21 @@ class Plugin extends AppPlugin {
                 }
             }
 
-            // --- Link the ancestor record itself (record fields only)
+            // --- Link the ancestor record itself (record fields only).
+            //     Respect the field's "Filter by collection": only link the ancestor when it
+            //     belongs to an allowed collection, unless Ignore filter is on for this field.
+            //     The ancestor's collection is read from its own "collection" property (reliable
+            //     everywhere, unlike panel.getActiveCollection()).
             if (!didApply && useSelf && field.type === 'record') {
                 const forceIgnore = !!opts.forceSelfIgnoreFilter;
-                const allowed = this._linkAllowedByCollection(field, ancestorColl && ancestorColl.guid);
+                const ancestorCollGuid = this._recordCollectionGuid(ancestor);
+                const allowed = this._linkAllowedByCollection(field, ancestorCollGuid);
                 if (forceIgnore || allowed) {
                     childProp.set(ancestor.guid);
                     didApply = (forceIgnore && !allowed) ? 'ancestor-self (filter bypassed)' : 'ancestor-self';
                 } else {
-                    this._log('  (self) blocked: ancestor collection not allowed by filter_colguid on', fieldId,
-                              '— enable "force" to bypass');
+                    this._log('  (self) blocked: ancestor collection', ancestorCollGuid,
+                              'not allowed by filter_colguid on', fieldId, '(enable Ignore filter to bypass)');
                 }
             }
 
